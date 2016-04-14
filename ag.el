@@ -163,7 +163,8 @@ different window, according to `ag-reuse-window'."
 (defun ag/buffer-name (search-string directory regexp)
   "Return a buffer name formatted according to ag.el conventions."
   (cond
-   (ag-reuse-buffers "*ag search*")
+   (ag-reuse-buffers
+    (if (eq major-mode 'ag-mode) (buffer-name) "*ag search*"))
    (regexp (format "*ag search regexp:%s dir:%s*" search-string directory))
    (:else (format "*ag search text:%s dir:%s*" search-string directory))))
 
